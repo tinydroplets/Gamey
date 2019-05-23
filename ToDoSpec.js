@@ -1,34 +1,27 @@
 describe('Movement', ()=>{
-    it('Dot Five Pixels Down', ()=>{
-     /* var movement = new Movement();
-      var initialDot = document.getElementById("initialDot");
-      var before = movement.getCurrentPosition(initalDot);
-      movement.MovePixels("down", 5);
-      var after = movement.getCurrentPosition();
+    let span, movement;
 
-      expect("down").toBe(movement.getDirection());
-      expect(5).toBe(before - after);*/
+    beforeEach(function(){
+        span = document.createElement("span");
+        span.id = "initialDot";
+        span.style.position = 'absolute';
+        span.style.left = '10px';
+        document.body.appendChild(span);
+
+        movement = Object.create(Movement);
     });
 
     it('Get the x-axis for an element', () => {
-        var span = document.createElement("span");
-        span.id = "initialDot";
-        document.body.appendChild(span);
+        var x = movement.getPositionX(span);
+        expect(10).toEqual(x);
+    });
 
-        var movement = Object.create(Movement);
-        var x = movement.getPositionX(document.getElementById("initialDot"));
-        expect(8).toEqual(x);
-
-        var span2 = document.createElement("span");
-        span2.id = "secondDot";
-        document.body.appendChild(span2);
-        var secondDot = document.getElementById("secondDot");
-        secondDot.style.position = 'absolute';
-        secondDot.style.left = '10px';
-
-        var y = movement.getPositionX(secondDot);
-        expect(10).toEqual(y);
+    it("Move Left 100 pixels", () => {
+        movement.moveLeftHundredPixels(span);
+        var newPosition = movement.getPositionX(span);
         
+        expect("absolute").toEqual(span.style.position);
+        expect(110).toEqual(newPosition);
     });
 
   })
